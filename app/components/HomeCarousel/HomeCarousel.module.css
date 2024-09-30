@@ -1,0 +1,25 @@
+.indicator {
+  width: 14px;
+  height: 4px;
+  transition: width 250ms ease;
+
+  &[data-active] {
+    width: 40px;
+  }
+}
+
+.controls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.root {
+  border-radius: var(--mantine-radius-lg);
+  overflow: hidden;
+
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+  }
+}

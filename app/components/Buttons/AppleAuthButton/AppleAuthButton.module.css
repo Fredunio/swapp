@@ -1,0 +1,16 @@
+.logo {
+  width: rem(30px);
+  height: rem(30px);
+}
+
+.logo-white {
+  @mixin light {
+    display: none;
+  }
+}
+
+.logo-black {
+  @mixin dark {
+    display: none;
+  }
+}

@@ -1,0 +1,7 @@
+.wrapper {
+  background-color: light-dark(
+    var(--mantine-color-pale-violet-0),
+    var(--mantine-color-dark-8)
+  );
+  border-radius: var(--mantine-radius-md);
+}

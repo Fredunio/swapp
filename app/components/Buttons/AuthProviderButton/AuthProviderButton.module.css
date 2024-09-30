@@ -1,0 +1,10 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: rem(30px);
+  height: rem(30px);
+}
