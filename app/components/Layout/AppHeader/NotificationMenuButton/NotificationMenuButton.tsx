@@ -1,6 +1,7 @@
 import { ActionIcon, Divider, Menu, Notification } from "@mantine/core";
 import { IconBell } from "@tabler/icons-react";
 
+// TODO: Maybe move to user button instead of notification button
 export default function NotificationMenuButton() {
   return (
     <Menu trigger="hover" openDelay={100}>

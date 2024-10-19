@@ -5,12 +5,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react";
 import type { LinksFunction, LoaderFunction } from "@remix-run/node";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import { ClerkApp } from "@clerk/remix";
 
+import { Notifications } from "@mantine/notifications";
 import "./tailwind.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -56,7 +58,32 @@ export const loader: LoaderFunction = (args) => rootAuthLoader(args);
 //   });
 // };
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
+  return (
+    <html lang="en">
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <div className="min-h-screen flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center h-full space-y-4 my-auto mx-auto">
+            <h1>Oh no!</h1>
+            <p>Something went wrong.</p>
+          </div>
+        </div>
+
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export function App() {
   return (
     <html lang="en">
       <head>
@@ -68,17 +95,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <MantineProvider defaultColorScheme="auto" theme={appTheme}>
-          <AppLayout>{children}</AppLayout>
+          <Notifications />
+          <AppLayout>
+            <Outlet />
+          </AppLayout>
         </MantineProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
-}
-
-function App() {
-  return <Outlet />;
 }
 
 export default ClerkApp(App);

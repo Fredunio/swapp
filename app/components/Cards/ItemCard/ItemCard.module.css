@@ -1,18 +1,73 @@
-.wrapper {
-  height: 100%;
-  user-select: none; /* Standard syntax */
+.card {
+  display: block;
+  position: relative;
+  padding: var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-xs);
+  background-color: var(--mantine-color-white);
+  border: light-dark(
+    1px solid var(--mantine-color-gray-3),
+    1px solid var(--mantine-color-gray-2)
+  );
+  box-shadow: var(--mantine-shadow-lg);
+
+  @media (max-width: $mantine-breakpoint-xs) {
+    border-radius: 0;
+  }
 }
 
-.actions {
-  margin-top: auto;
+.image {
+  border: 1px solid var(--mantine-color-gray-4);
+  filter: blur(25px) brightness(0.7);
+  opacity: 0.1;
+  transition: filter 2s, opacity 2s, transform 2s;
+
+  &.developed {
+    filter: blur(0px) brightness(1);
+
+    opacity: 1;
+  }
+}
+
+.signature {
+  position: absolute;
+  font-family: "Rock Salt";
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-gray-9);
+  transform: rotate(-5deg);
+  bottom: 20px;
+  right: 10px;
+  top: auto;
+  left: auto;
+  z-index: 10;
+  font-size: 1.6rem;
 }
 
 .section {
-  border-bottom: rem(1px) solid
-    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
-  padding-left: var(--mantine-spacing-md);
-  padding-right: var(--mantine-spacing-md);
+  padding-top: var(--mantine-spacing-md);
   padding-bottom: var(--mantine-spacing-md);
+  user-select: none;
+}
+
+.top-tape {
+  --tape-height: 20px;
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  background-color: var(--mantine-color-yellow-6);
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(var(--tape-height) / -2);
+}
+
+.item-name {
+  font-size: var(--mantine-font-size-xl);
+  font-weight: 700;
+  color: var(--mantine-color-gray-9);
+}
+
+.item-description {
+  font-size: var(--mantine-font-size-md);
+  color: var(--mantine-color-gray-7);
 }
 
 .like {

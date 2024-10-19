@@ -1,0 +1,68 @@
+mutation InsertItems($objects: [Item_insert_input!]!) {
+  insert_Item(objects: $objects) {
+    returning {
+      id
+    }
+  }
+}
+
+mutation AddTagsToItem($tagAndItemIds: [ItemTag_insert_input!]!) {
+  insert_ItemTag(objects: $tagAndItemIds) {
+    returning {
+      itemId
+      tagId
+    }
+  }
+}
+
+# mutation insertArticleWithTags {
+#   insert_article(objects: [
+#     {
+#       title: "Article 1",
+#       content: "Article 1 content",
+#       author_id: 1,
+#       article_tags: {
+#         data: [
+#           {
+#             tag: {
+#               data: {
+#                 value: "Recipes"
+#               },
+#               on_conflict: {
+#                 constraint: tag_value_key,
+#                 update_columns: [value]
+#               }
+#             }
+#           }
+#           {
+#             tag: {
+#               data: {
+#                 value: "Cooking"
+#               },
+#               on_conflict: {
+#                 constraint: tag_value_key,
+#                 update_columns: [value]
+#               }
+#             }
+#           }
+#         ]
+#       }
+#     }
+#   ]) {
+#     returning {
+#       title
+#       article_tags {
+#         tag {
+#           value
+#         }
+#       }
+#     }
+#   }
+#  }
+
+query GetItemNames {
+  Item {
+    id
+    name
+  }
+}

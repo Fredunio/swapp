@@ -2,7 +2,6 @@ import { ActionIcon, Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconShoppingBag, IconXboxX } from "@tabler/icons-react";
 
-// TODO: convert to drawer
 export default function ShoppingBagMenuButton() {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -39,22 +38,4 @@ export default function ShoppingBagMenuButton() {
       </ActionIcon>
     </>
   );
-}
-
-{
-  /* <Menu trigger="hover" openDelay={100} width={200}>
-        <Menu.Target>
-          <ActionIcon
-            variant="default"
-            size="lg"
-            aria-label="Shopping Bag"
-            radius="xl"
-          >
-            <IconShoppingBag />
-          </ActionIcon>
-        </Menu.Target>
-        <Menu.Dropdown>
-          <Menu.Item>Test</Menu.Item>
-        </Menu.Dropdown>
-      </Menu> */
 }

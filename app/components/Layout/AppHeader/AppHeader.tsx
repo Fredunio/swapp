@@ -15,6 +15,7 @@ import {
   ScrollArea,
   rem,
   useMantineTheme,
+  Flex,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -35,6 +36,7 @@ import ShoppingBagMenuButton from "./ShoppingBagMenuButton/ShoppingBagMenuButton
 import Searchbar from "~/components/Layout/AppHeader/Searchbar/Searchbar";
 import FavouriteButton from "./FavouriteButton/FavouriteButton";
 import { useLocation } from "@remix-run/react";
+import RandomItemButton from "./RandomItemButton/RandomItemButton";
 
 const mockdata = [
   {
@@ -98,17 +100,19 @@ export function AppHeader() {
     </UnstyledButton>
   ));
 
-  {
-    /* If in user dashboard - "/me" - header is sticky */
-  }
+  /* If in user dashboard - "/me" - header is sticky */
+
   return (
     <Box className={inDashboard ? classes.sticky : ""}>
       <header className={classes.header}>
         <AppLogo />
-        <Searchbar />
-        <ColorSchemeButton />
+        <Flex gap="xs">
+          <RandomItemButton />
+          <Searchbar />
+        </Flex>
         <Group gap={"xl"} visibleFrom="sm">
           <Group gap={"xs"} visibleFrom="sm">
+            <ColorSchemeButton />
             <NotificationMenuButton />
             <FavouriteButton />
             <ShoppingBagMenuButton />
