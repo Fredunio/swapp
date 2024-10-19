@@ -1,8 +1,47 @@
 import { RichTextEditor } from "@mantine/tiptap";
+import { Link } from "@tiptap/extension-link";
 
-import { Editor } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
+import { StarterKit } from "@tiptap/starter-kit";
 
-export default function TextEditor({ editor }: { editor: Editor | null }) {
+let filterTimeout: NodeJS.Timeout;
+
+const debounceUpdate = (
+  updatedContent: string,
+  func: (contentHtml: string) => void,
+  timeout: number
+) => {
+  clearTimeout(filterTimeout);
+  if (!updatedContent) return;
+
+  filterTimeout = setTimeout(() => {
+    console.log("====>", updatedContent);
+    func(updatedContent);
+  }, timeout);
+};
+
+export default function TextEditor({
+  initialContent,
+  onUpdate,
+  debounceTime,
+}: {
+  initialContent?: string;
+  onUpdate: (contentHtml: string) => void;
+  debounceTime?: number;
+}) {
+  const editor = useEditor({
+    extensions: [StarterKit, Link],
+    content: initialContent,
+    immediatelyRender: false, // avoid hydration mismatches
+    onUpdate: ({ editor }) => {
+      if (debounceTime) {
+        debounceUpdate(editor.getHTML(), onUpdate, debounceTime);
+      } else {
+        onUpdate && onUpdate(editor.getHTML());
+      }
+    },
+  });
+
   return (
     <RichTextEditor mih={300} editor={editor}>
       <RichTextEditor.Toolbar sticky stickyOffset={60}>

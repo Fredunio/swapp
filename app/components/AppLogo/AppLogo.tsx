@@ -1,4 +1,9 @@
-import { Anchor, AnchorProps, PolymorphicComponentProps } from "@mantine/core";
+import {
+  Anchor,
+  AnchorProps,
+  Image,
+  PolymorphicComponentProps,
+} from "@mantine/core";
 import classes from "./AppLogo.module.css";
 
 export default function AppLogo(
@@ -15,11 +20,8 @@ export default function AppLogo(
       fw={600}
       {...props}
     >
-      {/* <Flex py={40} className="w-full" justify="center" align="center">
-        <IconCone2Filled style={{ marginRight: -5 }} width={30} height={30} />
-        <IconCone style={{ marginLeft: -5 }} width={30} height={30} />
-      </Flex> */}
-      Swapp
+      <Image src="/logos/swapp-logo.png" alt="Swapp" height={40} w={100} />
     </Anchor>
   );
 }
+// swapp-logo.png

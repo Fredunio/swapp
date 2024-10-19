@@ -22,4 +22,8 @@
       opacity: 1;
     }
   }
+
+  @media (max-width: $mantine-breakpoint-xs) {
+    border-radius: 0;
+  }
 }

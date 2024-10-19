@@ -67,10 +67,7 @@ export function DropzoneButton({
               {/* Pdf file less than 30mb */}
               {rejectTitle}
             </Dropzone.Reject>
-            <Dropzone.Idle>
-              {idleTitle}
-              {/* Upload resume */}
-            </Dropzone.Idle>
+            <Dropzone.Idle>{idleTitle}</Dropzone.Idle>
           </Text>
           <Text ta="center" fz="sm" mt="xs" c="dimmed">
             {description}

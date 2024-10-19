@@ -4,8 +4,6 @@ import { AuthProviderButton } from "../AuthProviderButton/AuthProviderButton";
 import classes from "./AppleAuthButton.module.css";
 
 export default function AppleAuthButton() {
-  // FIXME: colorScheme should not be used in remix - hydration problem
-  //   console.log(colorScheme);
   return (
     <AuthProviderButton size="lg" radius="xl" onClick={() => {}}>
       <Image

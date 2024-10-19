@@ -19,7 +19,7 @@ export default function HomePage() {
         subheader={"Check out our new arrivals"}
       >
         {Array.from({ length: 10 }).map((_, index) => (
-          <ItemCard key={index} />
+          <ItemCard aspect={"mini"} key={index} />
         ))}
       </HomeItemSection>
       <Flex
@@ -28,6 +28,8 @@ export default function HomePage() {
         align="center"
         p={{ base: "md", md: "lg" }}
       >
+        <ItemCard />
+
         <Group>
           <h3>Get 10% off your first order</h3>
           <p>Subscribe to our newsletter and get 10% off your first order</p>

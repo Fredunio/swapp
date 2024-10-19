@@ -1,0 +1,88 @@
+query GetBrands {
+  Brand {
+    id
+    name
+  }
+}
+
+query GetCategories {
+  Category {
+    id
+    name
+  }
+}
+
+query GetCities {
+  City {
+    countryId
+    id
+    name
+    stateId
+  }
+}
+
+query GetCountries {
+  Country {
+    id
+    name
+  }
+}
+
+query GetColors {
+  Color {
+    id
+    name
+    hexCode
+  }
+}
+
+query GetConditions {
+  Condition {
+    id
+    name
+    description
+  }
+}
+
+query States {
+  State {
+    id
+    name
+    countryId
+    abbreviation
+  }
+}
+
+query GetCurrencies {
+  Currency {
+    id
+    isoCode
+    name
+    symbol
+    displayOrder
+  }
+}
+
+query GetSizes {
+  Size {
+    unit
+    value
+    id
+    description
+    name
+  }
+}
+
+query GetSubcategories {
+  Subcategory {
+    id
+    name
+    categoryId
+    parentSubcategoryId
+    SizeSubcategories {
+      id
+      sizeId
+      subcategoryId
+    }
+  }
+}

@@ -1,0 +1,50 @@
+query GetItemFormData @cached(ttl: 600) {
+  Country {
+    id
+    iso
+    iso3
+    name
+    phone_code
+    currency_id
+  }
+
+  Subcategory {
+    id
+    categoryId
+    name
+    parentSubcategoryId
+    SizeSubcategories {
+      id
+      sizeId
+      subcategoryId
+    }
+  }
+
+  Size {
+    id
+    name
+    unit
+    value
+    description
+  }
+
+  Condition {
+    id
+    name
+    description
+  }
+  Brand {
+    id
+    name
+  }
+  Category {
+    id
+    name
+  }
+  Color {
+    id
+    name
+    hexCode
+    isShining
+  }
+}

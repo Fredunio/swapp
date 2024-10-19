@@ -1,0 +1,27 @@
+mutation InsertTransaction($transaction: Transaction_insert_input!) {
+  insert_Transaction_one(object: $transaction) {
+    willPayExtra
+    extraPayMaxAmount
+    willReceiveExtra
+    extraReceiveMaxAmount
+    currencyId
+    availableUntil
+    swapForAnyItem
+    createdAt
+    updatedAt
+    transactionTypeId
+    userId
+    offeredItemId
+    seekingItemId
+    isCompleted
+    completedAt
+  }
+}
+
+query GetTransactionTypes {
+  TransactionType {
+    id
+    name
+    description
+  }
+}

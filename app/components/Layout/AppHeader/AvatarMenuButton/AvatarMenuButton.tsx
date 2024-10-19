@@ -1,4 +1,5 @@
-import { Avatar, Menu, rem, Stack } from "@mantine/core";
+import { useUser } from "@clerk/remix";
+import { Avatar, Loader, Menu, rem, Stack } from "@mantine/core";
 import {
   IconMessageCircle,
   IconPhoto,
@@ -7,7 +8,9 @@ import {
 } from "@tabler/icons-react";
 import { forwardRef } from "react";
 import LoginButton from "~/components/Buttons/LoginButton/LoginButton";
+import SignOutButton from "~/components/Buttons/SignOutButton/SignOutButton";
 import SignupButton from "~/components/Buttons/SignupButton/SignupButton";
+import optimizeAvatar from "~/lib/utils";
 
 interface UserButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   image?: string;
@@ -35,10 +38,21 @@ export default function AvatarMenuButton({
 }: {
   props?: UserButtonProps;
 }) {
+  const { isLoaded, isSignedIn, user } = useUser();
   return (
     <Menu trigger="hover" openDelay={100} shadow="md" width={200}>
       <Menu.Target>
-        <UserButton name="John Doe" {...props} />
+        {isLoaded ? (
+          <UserButton
+            name={user?.username || undefined}
+            image={optimizeAvatar(user?.imageUrl)}
+            {...props}
+          />
+        ) : (
+          <Avatar>
+            <Loader size="xs" />
+          </Avatar>
+        )}
         {/* <Avatar component="button" name="John Doe" />; */}
       </Menu.Target>
 
@@ -73,18 +87,22 @@ export default function AvatarMenuButton({
         </Menu.Item>
 
         <Menu.Divider />
-        <Stack gap={"4"}>
-          <LoginButton
-            style={{
-              width: "100%",
-            }}
-          />
-          <SignupButton
-            style={{
-              width: "100%",
-            }}
-          />
-        </Stack>
+        {isSignedIn ? (
+          <SignOutButton />
+        ) : (
+          <Stack gap={"4"}>
+            <LoginButton
+              style={{
+                width: "100%",
+              }}
+            />
+            <SignupButton
+              style={{
+                width: "100%",
+              }}
+            />
+          </Stack>
+        )}
       </Menu.Dropdown>
     </Menu>
   );

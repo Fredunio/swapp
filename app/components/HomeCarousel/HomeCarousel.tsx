@@ -31,7 +31,6 @@ export default function HomeCarousel() {
       onMouseLeave={autoplay.current.reset}
       controlSize={50}
     >
-      {/* <Carousel.Slide>1</Carousel.Slide> */}
       {images.map((image, index) => (
         <Carousel.Slide key={image}>
           <Image

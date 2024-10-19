@@ -1,0 +1,11 @@
+mutation StoreUser($userObject: StoreUser_insert_input!) {
+  insert_StoreUser_one(object: $userObject) {
+    id
+  }
+}
+
+mutation UpdateStoredUser($userId: String, $userObject: StoreUser_set_input!) {
+  update_StoreUser(where: { id: { _eq: $userId } }, _set: $userObject) {
+    affected_rows
+  }
+}

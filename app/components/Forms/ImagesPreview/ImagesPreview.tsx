@@ -8,7 +8,7 @@ export default function ImagesPreview({
   images: File[];
   onRemove: (index: number) => void;
 }) {
-  console.log("images", images);
+  // console.log("images", images);
   return (
     <SimpleGrid
       mt={"sm"}

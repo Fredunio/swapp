@@ -6,13 +6,21 @@ import {
   loadFromSessionStorage,
   saveToSessionStorage,
 } from "~/lib/utils";
-import FormHeader from "~/components/Forms/FormHeader";
+import FormHeader from "~/components/Forms/FormHeader/FormHeader";
 import { TswapType } from "~/lib/types";
+import { getAuth } from "@clerk/remix/ssr.server";
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 
-// export const loader = async () => {
-//   const swapType = checkIfSwapType(loadFromSessionStorage("addSwapType"));
-//   return json({ swapType });
-// };
+export const loader = async ({
+  context,
+  params,
+  request,
+}: LoaderFunctionArgs) => {
+  const { sessionId, userId } = await getAuth({ request, params, context });
+  if (!sessionId || !userId) {
+    return redirect("/login");
+  }
+};
 
 export default function AddPage() {
   // const { swapType } = useLoaderData<typeof loader>();
